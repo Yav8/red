@@ -72,4 +72,11 @@ public class EntradaTexto extends Entrada {
         } 
         return textoADevolver;
     }
+    
+    /**
+     * Muestra por pantalla el usuario y el mensaje que ha introducido.
+     */
+    public void mostrarAutorYMensaje() {
+        System.out.println("Usuario: " + getUsuario() + " - mensaje: " + mensaje);
+    }
 }
