@@ -9,12 +9,8 @@ import java.time.LocalDateTime;
  * @author Javier de Cea Dominguez.
  * @version 2018.04.14
  */
-public class EntradaTexto {
-    private String usuario;
+public class EntradaTexto extends Entrada {
     private String mensaje;
-    private LocalDateTime momentoPublicacion;
-    private int cantidadMeGusta;
-    private ArrayList<String> comentarios;
     
     /**
      * Constructor para objetos de la clase EntradaTexto.
@@ -22,26 +18,8 @@ public class EntradaTexto {
      * @param texto El mensaje que va a enviar el usuario.
      */
     public EntradaTexto(String autor, String texto) {
-        usuario = autor;
+        super(autor);
         mensaje = texto;
-        momentoPublicacion = LocalDateTime.now();
-        cantidadMeGusta = 0;
-        comentarios = new ArrayList<>();
-    }
-    
-    /**
-     * Añade un "me gusta" a un mensaje.
-     */
-    public void meGusta() {
-        cantidadMeGusta += 1;
-    }
-    
-    /**
-     * Añade un comentario a un mensaje.
-     * @param text El comentario que va a ser añadido.
-     */
-    public void addComentario(String text) {
-        comentarios.add(text);
     }
     
     /**
@@ -53,30 +31,14 @@ public class EntradaTexto {
     }
     
     /**
-     * Devuelve el tiempo que ha transcurrido desde que se creo el post.
-     * @return Devuelve un LocalDateTime que corresponde al tiempo que ha 
-     * transcurrido desde que se creo el post.
-     */
-    public LocalDateTime getMomentoPublicacion() {
-        LocalDateTime momentoADevolver = LocalDateTime.now();
-        momentoADevolver = momentoADevolver.minusYears(momentoPublicacion.getYear());
-        momentoADevolver = momentoADevolver.minusMonths(momentoPublicacion.getMonthValue());
-        momentoADevolver = momentoADevolver.minusDays(momentoPublicacion.getDayOfMonth());                
-        momentoADevolver = momentoADevolver.minusHours(momentoPublicacion.getHour());
-        momentoADevolver = momentoADevolver.minusMinutes(momentoPublicacion.getMinute());
-        momentoADevolver = momentoADevolver.minusSeconds(momentoPublicacion.getSecond());
-        momentoADevolver = momentoADevolver.minusNanos(momentoPublicacion.getNano());
-        return momentoADevolver;
-    }
-    
-    /**
      * Devuelve todas las caracteristicas de las entradas de texto.
      * @return Devuelve un String con las caracteristicas de las 
      * entradas de texto.
      */
     public String toString() {
-        String textoADevolver = "Usuario: " + usuario + " - mensaje: " + mensaje + " - momento de la publicacion: hace ";
+        String textoADevolver = "Usuario: " + getUsuario() + " - mensaje: " + getMensaje() + " - momento de la publicacion: hace ";
         LocalDateTime fechaDelMomentoDeLaPublicacion = getMomentoPublicacion();
+        ArrayList<String> listaDeComentarios = getComentarios();
         if(fechaDelMomentoDeLaPublicacion.getMinute() < 1) {
             textoADevolver += fechaDelMomentoDeLaPublicacion.getSecond();
             if(fechaDelMomentoDeLaPublicacion.getSecond() == 1) {
@@ -95,15 +57,15 @@ public class EntradaTexto {
                 textoADevolver += " minutos ";                    
             }
         }
-        textoADevolver += "- me gusta: " + cantidadMeGusta;
-        if(comentarios.isEmpty()) {
+        textoADevolver += "- me gusta: " + getCantidadMeGusta();
+        if(listaDeComentarios.isEmpty()) {
             textoADevolver += " - no se ha realizado ningun comentario aun.";                                        
         }
         else {
             textoADevolver += " - comentarios: ";
-            for(int contador = 0; contador < comentarios.size(); contador++) {
-                textoADevolver += comentarios.get(contador);
-                if(contador != comentarios.size() - 1) {
+            for(int contador = 0; contador < listaDeComentarios.size(); contador++) {
+                textoADevolver += listaDeComentarios.get(contador);
+                if(contador != listaDeComentarios.size() - 1) {
                     textoADevolver += " - ";
                 }
             }

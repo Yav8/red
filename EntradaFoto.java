@@ -9,13 +9,9 @@ import java.time.LocalDateTime;
  * @author Javier de Cea Dominguez.
  * @version 2018.04.14
  */
-public class EntradaFoto {
-    private String usuario;
+public class EntradaFoto extends Entrada {
     private String urlImagen;
     private String titulo;
-    private LocalDateTime momentoPublicacion;
-    private int cantidadMeGusta;
-    private ArrayList<String> comentarios;
     
     /**
      * Constructor para objetos de la clase EntradaFoto.
@@ -24,27 +20,9 @@ public class EntradaFoto {
      * @param titulo El titulo de la imagen.
      */
     public EntradaFoto(String autor, String url, String titulo) {
-        usuario = autor;
+        super(autor);
         urlImagen = url;
         this.titulo = titulo;
-        momentoPublicacion = LocalDateTime.now();
-        cantidadMeGusta = 0;
-        comentarios = new ArrayList<>();
-    }
-    
-    /**
-     * Añade un "me gusta" a una imagen.
-     */
-    public void meGusta() {
-        cantidadMeGusta += 1;
-    }
-    
-    /**
-     * Añade un comentario a una imagen.
-     * @param text El comentario que va a ser añadido.
-     */
-    public void addComentario(String text) {
-        comentarios.add(text);
     }
     
     /**
@@ -64,30 +42,14 @@ public class EntradaFoto {
     }
     
     /**
-     * Devuelve el tiempo que ha transcurrido desde que se creo el post.
-     * @return Devuelve un LocalDateTime que corresponde al tiempo que ha 
-     * transcurrido desde que se creo el post.
-     */
-    public LocalDateTime getMomentoPublicacion() {
-        LocalDateTime momentoADevolver = LocalDateTime.now();
-        momentoADevolver = momentoADevolver.minusYears(momentoPublicacion.getYear());
-        momentoADevolver = momentoADevolver.minusMonths(momentoPublicacion.getMonthValue());
-        momentoADevolver = momentoADevolver.minusDays(momentoPublicacion.getDayOfMonth());                
-        momentoADevolver = momentoADevolver.minusHours(momentoPublicacion.getHour());
-        momentoADevolver = momentoADevolver.minusMinutes(momentoPublicacion.getMinute());
-        momentoADevolver = momentoADevolver.minusSeconds(momentoPublicacion.getSecond());
-        momentoADevolver = momentoADevolver.minusNanos(momentoPublicacion.getNano());
-        return momentoADevolver;
-    }
-    
-    /**
      * Devuelve todas las caracteristicas de las entradas de foto.
      * @return Devuelve un String con las caracteristicas de las 
      * entradas de foto.
      */
     public String toString() {
-        String textoADevolver = "Usuario: " + usuario + " - url de la imagen: " + urlImagen + " - titulo de la imagen: " + titulo + " - momento de la publicacion: hace ";
+        String textoADevolver = "Usuario: " + getUsuario() + " - url de la imagen: " + urlImagen + " - titulo de la imagen: " + titulo + " - momento de la publicacion: hace ";
         LocalDateTime fechaDelMomentoDeLaPublicacion = getMomentoPublicacion();
+        ArrayList<String> listaDeComentarios = getComentarios();
         if(fechaDelMomentoDeLaPublicacion.getMinute() < 1) {
             textoADevolver += fechaDelMomentoDeLaPublicacion.getSecond();
             if(fechaDelMomentoDeLaPublicacion.getSecond() == 1) {
@@ -106,15 +68,15 @@ public class EntradaFoto {
                 textoADevolver += " minutos ";                    
             }
         }
-        textoADevolver += "- me gusta: " + cantidadMeGusta;
-        if(comentarios.isEmpty()) {
+        textoADevolver += "- me gusta: " + getCantidadMeGusta();
+        if(listaDeComentarios.isEmpty()) {
             textoADevolver += " - no se ha realizado ningun comentario aun.";                                        
         }
         else {
             textoADevolver += " - comentarios: ";
-            for(int contador = 0; contador < comentarios.size(); contador++) {
-                textoADevolver += comentarios.get(contador);
-                if(contador != comentarios.size() - 1) {
+            for(int contador = 0; contador < listaDeComentarios.size(); contador++) {
+                textoADevolver += listaDeComentarios.get(contador);
+                if(contador != listaDeComentarios.size() - 1) {
                     textoADevolver += " - ";
                 }
             }
