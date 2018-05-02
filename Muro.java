@@ -1,131 +1,63 @@
 import java.util.ArrayList;
 
 /**
- * La clase Muro contiene todas las entradas de texto y todas las 
- * entradas de foto.
+ * La clase Muro contiene informacion relacionada con todos los 
+ * tipos de entrada que existen.
  * @author Javier de Cea Dominguez.
  * @version 2018.04.14
  */
 public class Muro {
-    private ArrayList<EntradaTexto> mensajes;
-    private ArrayList<EntradaFoto> fotos;
-    private ArrayList<EntradaEvento> eventos;
+    private ArrayList<Entrada> entradas;
     
     /**
      * Constructor para objetos de la clase Muro.
      */
     public Muro() {
-        mensajes = new ArrayList<>();
-        fotos = new ArrayList<>();
-        eventos = new ArrayList<>();
+        entradas = new ArrayList<>();
     }
     
     /**
-     * Añade una entrada de texto al muro.
-     * @param entradaTexto La entrada de texto que va a ser añadida 
+     * Añade una entrada al muro.
+     * @param entradaTexto La entrada que va a ser añadida 
      * al muro.
      */
-    public void addEntradaTexto(EntradaTexto entradaTexto) {
-        mensajes.add(entradaTexto);
+    public void addEntrada(Entrada entrada) {
+        entradas.add(entrada);
     }
     
     /**
-     * Añade una entrada de foto al muro.
-     * @param entradaFoto La entrada de foto que va a ser añadida 
-     * al muro.
-     */
-    public void addEntradaFoto(EntradaFoto entradaFoto) {
-        fotos.add(entradaFoto);
-    }
-    
-    /**
-     * Devuelve las caracteristicas de las entradas de texto, de 
-     * las entradas de foto y de las entradas de evento, en este orden.
+     * Devuelve las caracteristicas de las entradas que existen en el muro.
      * @return Devuelve un String con las caracteristicas de las entradas 
-     * de texto, las entradas de imagen y las entradas de evento, en este orden.
+     * que existen en el muro.
      */
+    @Override
     public String toString() {
         String textoADevolver = "";
-        if(mensajes.size() > 0) {
-            textoADevolver += "Entradas de texto /-/ ";
-            for(int contador = 0; contador < mensajes.size(); contador++) {
-                textoADevolver += mensajes.get(contador).toString();
-                if(contador != mensajes.size() - 1) {
-                    textoADevolver += " / ";
-                }
+        
+        if (entradas.size() > 0) {
+            for(Entrada entrada : entradas) {
+                textoADevolver += entrada;
             }
         }
-        if(mensajes.size() > 0 && fotos.size() > 0) {
-            textoADevolver += " /-/ ";
-        }
-        if(fotos.size() > 0) {
-            textoADevolver += "Entradas de foto /-/ ";      
-            for(int contador = 0; contador < fotos.size(); contador++) {
-                textoADevolver += fotos.get(contador).toString();
-                if(contador != fotos.size() - 1) {
-                    textoADevolver += " / ";
-                }
-            }
-        }
-        if((mensajes.size() > 0 || fotos.size() > 0) && eventos.size() > 0) {
-            textoADevolver += " /-/ ";
-        }
-        if(eventos.size() > 0) {
-            textoADevolver += "Entradas de evento /-/ ";      
-            for(int contador = 0; contador < eventos.size(); contador++) {
-                textoADevolver += eventos.get(contador).toString();
-                if(contador != fotos.size() - 1) {
-                    textoADevolver += " / ";
-                }
-            }
-        }
-        if(textoADevolver.equals("")) {
-            textoADevolver = "No hay datos de entradas de texto, ni de entradas de fotos, ni de eventos aun.";
+        else {
+            textoADevolver = "No hay datos de entradas de ningun tipo de entrada aun.";
         }
         return textoADevolver;
     }
     
     /**
-     * Muestra por pantalla las caracteristicas de las entradas de texto, de 
-     * las entradas de foto y de las entradas de evento, en este orden.
+     * Muestra por pantalla las caracteristicas de las entradas que 
+     * existen en el muro.
      */
     public void mostrarCaracteristicas() {
-        if(mensajes.size() > 0 || fotos.size() > 0 || eventos.size() > 0) {
-            if(mensajes.size() > 0) {
-                System.out.println("Entradas de texto:");
-                for(EntradaTexto entradaTexto : mensajes) {
-                    System.out.println(entradaTexto);
-                }
-                if(fotos.size() > 0) {
-                    System.out.println();
-                }
-            }
-            if(fotos.size() > 0) {
-                System.out.println("Entradas de foto:");
-                for(EntradaFoto entradaFoto : fotos) {
-                    System.out.println(entradaFoto);
-                }
-                if(eventos.size() > 0) {
-                    System.out.println();
-                }
-            }
-            if(eventos.size() > 0) {
-                System.out.println("Entradas de evento:");      
-                for(EntradaEvento entradaEvento : eventos) {
-                    System.out.println(entradaEvento);
-                }
+        if (entradas.size() > 0) {
+            System.out.println("Entradas existentes en el muro:");
+            for(Entrada entrada : entradas) {
+                System.out.println(entrada);
             }
         }
         else {
-            System.out.println("No hay datos de entradas de texto, ni de entradas de fotos, ni de entradas de eventos aun.");
+            System.out.println("No hay datos de ningun tipo de entrada aun.");
         }
-    }
-    
-    /**
-     * Añade un evento al muro.
-     * @param entradaEvento Añade un evento al muro.
-     */
-    public void addEntradaEvento(EntradaEvento entradaEvento) {
-        eventos.add(entradaEvento);
     }
 }

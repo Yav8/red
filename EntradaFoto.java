@@ -84,4 +84,11 @@ public class EntradaFoto extends EntradaConComentarios {
         } 
         return textoADevolver;
     }
+    
+    /**
+     * Muestra por pantalla el resultado de aplicar el metodo toString de esta clase sobre este objeto.
+     */
+    public void mostrar() {
+        System.out.println(this);
+    }
 }

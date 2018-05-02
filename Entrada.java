@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
  * realiza una entrada, el momento que se publica y la 
  * cantidad de "me gusta" que tiene.
  * @author Javier de Cea Dominguez.
- * @version 20.04.2018
+ * @version 2018.04.20
  */
 public class Entrada {
     private String usuario;
@@ -62,5 +62,12 @@ public class Entrada {
      */
     public int getCantidadMeGusta() {
         return cantidadMeGusta;
+    }
+    
+    /**
+     * Metodo que utilizan las clases hijas para mostrar sus respectivas entradas.
+     */
+    public void mostrar() {
+        
     }
 }

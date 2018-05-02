@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
  * La clase EntradaEvento representa los eventos que 
  * se producen en nuestra red social.
  * @author Javier de Cea Dominguez.
- * @version 20.04.2018
+ * @version 2018.04.20
  */
 public class EntradaEvento extends Entrada {
     private String mensajeEvento;
@@ -56,5 +56,12 @@ public class EntradaEvento extends Entrada {
         }
         textoADevolver += "- me gusta: " + getCantidadMeGusta();
         return textoADevolver;
+    }
+    
+    /**
+     * Muestra por pantalla el resultado de aplicar el metodo toString de esta clase sobre este objeto.
+     */
+    public void mostrar() {
+        System.out.println(this);
     }
 }
