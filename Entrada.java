@@ -101,4 +101,11 @@ public class Entrada {
         textoADevolver += "- me gusta: " + getCantidadMeGusta();
         return textoADevolver;
     }
+    
+    /**
+     * Muestra por pantalla los datos exclusivos de la clase Entrada.
+     */
+    public void mostrarDatosExclusivos() {
+        
+    }
 }
