@@ -40,7 +40,7 @@ public class Muro {
             }
         }
         else {
-            textoADevolver = "No hay datos de entradas de ningun tipo de entrada aun.";
+            textoADevolver = "No hay datos de ningun tipo de entrada aun.";
         }
         return textoADevolver;
     }
@@ -53,11 +53,18 @@ public class Muro {
         if (entradas.size() > 0) {
             System.out.println("Entradas existentes en el muro:");
             for(Entrada entrada : entradas) {
-                System.out.println(entrada);
+                entrada.mostrar();
             }
         }
         else {
             System.out.println("No hay datos de ningun tipo de entrada aun.");
         }
+    }
+    
+    /**
+     * Muestra por pantalla el metodo toString de esta clase para este objeto.
+     */
+    public void mostrarToString() {
+        System.out.println(this);
     }
 }

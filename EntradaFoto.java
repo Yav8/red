@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.time.LocalDateTime;
-
 /**
  * La clase EntradaFoto contiene las imagenes que los 
  * usuarios desean compartir, el momento en que fueron 
@@ -48,41 +45,7 @@ public class EntradaFoto extends EntradaConComentarios {
      */
     @Override
     public String toString() {
-        String textoADevolver = "Usuario: " + getUsuario() + " - url de la imagen: " + urlImagen + " - titulo de la imagen: " + titulo + " - momento de la publicacion: hace ";
-        LocalDateTime fechaDelMomentoDeLaPublicacion = getMomentoPublicacion();
-        ArrayList<String> listaDeComentarios = getComentarios();
-        if(fechaDelMomentoDeLaPublicacion.getMinute() < 1) {
-            textoADevolver += fechaDelMomentoDeLaPublicacion.getSecond();
-            if(fechaDelMomentoDeLaPublicacion.getSecond() == 1) {
-                textoADevolver += " segundo ";                    
-            }
-            else {
-                textoADevolver += " segundos ";                    
-            }
-        }
-        else {
-            textoADevolver += fechaDelMomentoDeLaPublicacion.getMinute();
-            if(fechaDelMomentoDeLaPublicacion.getMinute() == 1) {
-                textoADevolver += " minuto ";
-            }
-            else {
-                textoADevolver += " minutos ";                    
-            }
-        }
-        textoADevolver += "- me gusta: " + getCantidadMeGusta();
-        if(listaDeComentarios.isEmpty()) {
-            textoADevolver += " - no se ha realizado ningun comentario aun.";                                        
-        }
-        else {
-            textoADevolver += " - comentarios: ";
-            for(int contador = 0; contador < listaDeComentarios.size(); contador++) {
-                textoADevolver += listaDeComentarios.get(contador);
-                if(contador != listaDeComentarios.size() - 1) {
-                    textoADevolver += " - ";
-                }
-            }
-        } 
-        return textoADevolver;
+        return super.toString() + " - url de la imagen: " + urlImagen + " - titulo de la imagen: " + titulo;
     }
     
     /**

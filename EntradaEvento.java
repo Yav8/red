@@ -1,5 +1,3 @@
-import java.time.LocalDateTime;
-
 /**
  * La clase EntradaEvento representa los eventos que 
  * se producen en nuestra red social.
@@ -12,6 +10,7 @@ public class EntradaEvento extends Entrada {
     /**
      * Constructor para objetos de la clase EntradaEvento.
      * @param autor El usuario que ha introducido un post.
+     * @param texto El mensaje del evento del post.
      */
     public EntradaEvento(String autor, String texto) {
         super(autor);
@@ -34,28 +33,7 @@ public class EntradaEvento extends Entrada {
      */
     @Override
     public String toString() {
-        String textoADevolver = "Usuario: " + getUsuario() + " - mensaje: " + getMensajeEvento() + " - momento de la publicacion: hace ";
-        LocalDateTime fechaDelMomentoDeLaPublicacion = getMomentoPublicacion();
-        if(fechaDelMomentoDeLaPublicacion.getMinute() < 1) {
-            textoADevolver += fechaDelMomentoDeLaPublicacion.getSecond();
-            if(fechaDelMomentoDeLaPublicacion.getSecond() == 1) {
-                textoADevolver += " segundo ";                    
-            }
-            else {
-                textoADevolver += " segundos ";                    
-            }
-        }
-        else {
-            textoADevolver += fechaDelMomentoDeLaPublicacion.getMinute();
-            if(fechaDelMomentoDeLaPublicacion.getMinute() == 1) {
-                textoADevolver += " minuto ";
-            }
-            else {
-                textoADevolver += " minutos ";                    
-            }
-        }
-        textoADevolver += "- me gusta: " + getCantidadMeGusta();
-        return textoADevolver;
+        return super.toString() + " - evento: " + getMensajeEvento();
     }
     
     /**

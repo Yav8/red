@@ -70,4 +70,35 @@ public class Entrada {
     public void mostrar() {
         
     }
+    
+    /**
+     * Devuelve las caracteristicas comunes a todas las entradas.
+     * @return Devuelve un String que contiene las caracteristicas 
+     * comunes a todas las entradas.
+     */
+    @Override
+    public String toString() {
+        String textoADevolver = "Usuario: " + getUsuario() + " - momento de la publicacion: hace ";
+        LocalDateTime fechaDelMomentoDeLaPublicacion = getMomentoPublicacion();
+        if(fechaDelMomentoDeLaPublicacion.getMinute() < 1) {
+            textoADevolver += fechaDelMomentoDeLaPublicacion.getSecond();
+            if(fechaDelMomentoDeLaPublicacion.getSecond() == 1) {
+                textoADevolver += " segundo ";                    
+            }
+            else {
+                textoADevolver += " segundos ";                    
+            }
+        }
+        else {
+            textoADevolver += fechaDelMomentoDeLaPublicacion.getMinute();
+            if(fechaDelMomentoDeLaPublicacion.getMinute() == 1) {
+                textoADevolver += " minuto ";
+            }
+            else {
+                textoADevolver += " minutos ";                    
+            }
+        }
+        textoADevolver += "- me gusta: " + getCantidadMeGusta();
+        return textoADevolver;
+    }
 }
