@@ -50,4 +50,11 @@ public class EntradaTexto extends EntradaConComentarios {
     public void mostrar() {
         System.out.println(this);
     }
+    
+    /**
+     * Muestra por pantalla los datos exclusivos de las entradas de texto.
+     */
+    public void mostrarDatosExclusivos() {
+        System.out.println("mensaje: " + mensaje);
+    }
 }

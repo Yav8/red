@@ -54,4 +54,11 @@ public class EntradaFoto extends EntradaConComentarios {
     public void mostrar() {
         System.out.println(this);
     }
+    
+    /**
+     * Muestra por pantalla los datos exclusivos de las entradas de foto.
+     */
+    public void mostrarDatosExclusivos() {
+        System.out.println("url de la imagen: " + urlImagen + " - titulo: " + titulo);
+    }
 }

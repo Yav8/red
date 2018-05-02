@@ -42,4 +42,11 @@ public class EntradaEvento extends Entrada {
     public void mostrar() {
         System.out.println(this);
     }
+    
+    /**
+     * Muestra por pantalla los datos exclusivos de las entradas de eventos.
+     */
+    public void mostrarDatosExclusivos() {
+        System.out.println("evento: " + getMensajeEvento());
+    }
 }

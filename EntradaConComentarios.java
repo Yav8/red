@@ -28,15 +28,6 @@ public class EntradaConComentarios extends Entrada {
     }
     
     /**
-     * Devuelve los comentarios de la entrada.
-     * @return Devuelve un ArrayList de String que son los comentarios que 
-     * tiene una entrada.
-     */
-    public ArrayList<String> getComentarios() {
-        return comentarios;
-    }
-    
-    /**
      * Devuelve las caracteristicas comunes a las entradas que pueden 
      * tener comentarios.
      * @return Devuelve un String que contiene las caracteristicas 

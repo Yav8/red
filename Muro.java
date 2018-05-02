@@ -67,4 +67,48 @@ public class Muro {
     public void mostrarToString() {
         System.out.println(this);
     }
+    
+    /**
+     * Muestra por pantalla los datos exclusivos de todas las entradas cuyo tipo 
+     * coincida con el tipo que el usuario haya introducido por parametro o todas 
+     * si introduce "null".
+     * @param textoEntrada El tipo de entrada que el usuario introduce para 
+     * mostrar por pantalla todas las entradas que pertenezcan a dicho tipo. 
+     * Si en vez de introducir un tipo de entrada introduce "null" se mostraran 
+     * todas las que tiene el muro.
+     */
+    public void mostrarDatosExclusivosEntradasFiltradas(String textoEntrada) {
+        if (textoEntrada != null) {
+            for (Entrada entrada : entradas) {
+                if (entrada.getClass().getSimpleName().equals(textoEntrada) && textoEntrada.equals("EntradaTexto")) {
+                    EntradaTexto entradaActual = (EntradaTexto)entrada;
+                    entradaActual.mostrarDatosExclusivos();
+                }
+                else if (entrada.getClass().getSimpleName().equals(textoEntrada) && textoEntrada.equals("EntradaFoto")) {
+                    EntradaFoto entradaActual = (EntradaFoto)entrada;
+                    entradaActual.mostrarDatosExclusivos();
+                }
+                else if (entrada.getClass().getSimpleName().equals(textoEntrada) && textoEntrada.equals("EntradaEvento")) {
+                    EntradaEvento entradaActual = (EntradaEvento)entrada;
+                    entradaActual.mostrarDatosExclusivos();
+                }
+            }
+        }
+        else {
+            for (Entrada entrada : entradas) {
+                if (entrada.getClass().getSimpleName().equals("EntradaTexto")) {
+                    EntradaTexto entradaActual = (EntradaTexto)entrada;
+                    entradaActual.mostrarDatosExclusivos();
+                }
+                else if (entrada.getClass().getSimpleName().equals("EntradaFoto")) {
+                    EntradaFoto entradaActual = (EntradaFoto)entrada;
+                    entradaActual.mostrarDatosExclusivos();
+                }
+                else if (entrada.getClass().getSimpleName().equals("EntradaEvento")) {
+                    EntradaEvento entradaActual = (EntradaEvento)entrada;
+                    entradaActual.mostrarDatosExclusivos();
+                }
+            }
+        }
+    }
 }
