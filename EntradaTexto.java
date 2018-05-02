@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
  * @author Javier de Cea Dominguez.
  * @version 2018.04.14
  */
-public class EntradaTexto extends Entrada {
+public class EntradaTexto extends EntradaConComentarios {
     private String mensaje;
     
     /**
@@ -35,6 +35,7 @@ public class EntradaTexto extends Entrada {
      * @return Devuelve un String con las caracteristicas de las 
      * entradas de texto.
      */
+    @Override
     public String toString() {
         String textoADevolver = "Usuario: " + getUsuario() + " - mensaje: " + getMensaje() + " - momento de la publicacion: hace ";
         LocalDateTime fechaDelMomentoDeLaPublicacion = getMomentoPublicacion();

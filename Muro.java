@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Muro {
     private ArrayList<EntradaTexto> mensajes;
     private ArrayList<EntradaFoto> fotos;
+    private ArrayList<EntradaEvento> eventos;
     
     /**
      * Constructor para objetos de la clase Muro.
@@ -16,11 +17,12 @@ public class Muro {
     public Muro() {
         mensajes = new ArrayList<>();
         fotos = new ArrayList<>();
+        eventos = new ArrayList<>();
     }
     
     /**
-     * AÃ±ade una entrada de texto al muro.
-     * @param entradaTexto La entrada de texto que va a ser aÃ±adida 
+     * Añade una entrada de texto al muro.
+     * @param entradaTexto La entrada de texto que va a ser añadida 
      * al muro.
      */
     public void addEntradaTexto(EntradaTexto entradaTexto) {
@@ -28,8 +30,8 @@ public class Muro {
     }
     
     /**
-     * AÃ±ade una entrada de foto al muro.
-     * @param entradaFoto La entrada de foto que va a ser aÃ±adida 
+     * Añade una entrada de foto al muro.
+     * @param entradaFoto La entrada de foto que va a ser añadida 
      * al muro.
      */
     public void addEntradaFoto(EntradaFoto entradaFoto) {
@@ -37,10 +39,10 @@ public class Muro {
     }
     
     /**
-     * Devuelve las caracteristicas de las entradas de texto y de 
-     * las entradas de foto, en este orden.
+     * Devuelve las caracteristicas de las entradas de texto, de 
+     * las entradas de foto y de las entradas de evento, en este orden.
      * @return Devuelve un String con las caracteristicas de las entradas 
-     * de texto y las entradas de imagen en este orden.
+     * de texto, las entradas de imagen y las entradas de evento, en este orden.
      */
     public String toString() {
         String textoADevolver = "";
@@ -65,18 +67,30 @@ public class Muro {
                 }
             }
         }
+        if((mensajes.size() > 0 || fotos.size() > 0) && eventos.size() > 0) {
+            textoADevolver += " /-/ ";
+        }
+        if(eventos.size() > 0) {
+            textoADevolver += "Entradas de evento /-/ ";      
+            for(int contador = 0; contador < eventos.size(); contador++) {
+                textoADevolver += eventos.get(contador).toString();
+                if(contador != fotos.size() - 1) {
+                    textoADevolver += " / ";
+                }
+            }
+        }
         if(textoADevolver.equals("")) {
-            textoADevolver = "No hay datos de entradas de texto, ni de entradas de fotos aun.";
+            textoADevolver = "No hay datos de entradas de texto, ni de entradas de fotos, ni de eventos aun.";
         }
         return textoADevolver;
     }
     
     /**
-     * Muestra por pantalla las caracteristicas de las entradas de texto y de 
-     * las entradas de foto, en este orden.
+     * Muestra por pantalla las caracteristicas de las entradas de texto, de 
+     * las entradas de foto y de las entradas de evento, en este orden.
      */
     public void mostrarCaracteristicas() {
-        if(mensajes.size() > 0 || fotos.size() > 0) {
+        if(mensajes.size() > 0 || fotos.size() > 0 || eventos.size() > 0) {
             if(mensajes.size() > 0) {
                 System.out.println("Entradas de texto:");
                 for(EntradaTexto entradaTexto : mensajes) {
@@ -91,10 +105,27 @@ public class Muro {
                 for(EntradaFoto entradaFoto : fotos) {
                     System.out.println(entradaFoto);
                 }
+                if(eventos.size() > 0) {
+                    System.out.println();
+                }
+            }
+            if(eventos.size() > 0) {
+                System.out.println("Entradas de evento:");      
+                for(EntradaEvento entradaEvento : eventos) {
+                    System.out.println(entradaEvento);
+                }
             }
         }
         else {
-            System.out.println("No hay datos de entradas de texto, ni de entradas de fotos aun.");
+            System.out.println("No hay datos de entradas de texto, ni de entradas de fotos, ni de entradas de eventos aun.");
         }
+    }
+    
+    /**
+     * Añade un evento al muro.
+     * @param entradaEvento Añade un evento al muro.
+     */
+    public void addEntradaEvento(EntradaEvento entradaEvento) {
+        eventos.add(entradaEvento);
     }
 }

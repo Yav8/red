@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
  * @author Javier de Cea Dominguez.
  * @version 2018.04.14
  */
-public class EntradaFoto extends Entrada {
+public class EntradaFoto extends EntradaConComentarios {
     private String urlImagen;
     private String titulo;
     
@@ -46,6 +46,7 @@ public class EntradaFoto extends Entrada {
      * @return Devuelve un String con las caracteristicas de las 
      * entradas de foto.
      */
+    @Override
     public String toString() {
         String textoADevolver = "Usuario: " + getUsuario() + " - url de la imagen: " + urlImagen + " - titulo de la imagen: " + titulo + " - momento de la publicacion: hace ";
         LocalDateTime fechaDelMomentoDeLaPublicacion = getMomentoPublicacion();
